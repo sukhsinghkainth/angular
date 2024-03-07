@@ -1,0 +1,4 @@
+@import url('/src/app/components/login/login.component.css');
+mat-form-field {
+    width: 100%;
+}

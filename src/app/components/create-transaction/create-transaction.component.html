@@ -1,0 +1,42 @@
+<div class="login-container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>Amount:</mat-label>
+      <input id="amount" type="number" matInput formControlName="amount">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Notes:</mat-label>
+      <input id="notes" type="text" matInput formControlName="notes">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Type:</mat-label>
+      <mat-select id="type" formControlName="type" (selectionChange)="onTypeChange()">
+        <mat-option value="income">Income</mat-option>
+        <mat-option value="expense">Expense</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Account Type:</mat-label>
+      <mat-select id="accountType" formControlName="accountType">
+        <mat-option value="savings">Savings</mat-option>
+        <mat-option value="card">Card</mat-option>
+        <mat-option value="cash">Cash</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Category:</mat-label>
+      <mat-select id="categoryName" formControlName="categoryName">
+        <mat-option *ngFor="let category of getFilteredCategories(type)" [value]="category.name">{{category.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div>
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+    </div>
+  </form>
+</div>
+
+  <ng-toast [style]="{width:'300px'}"></ng-toast>

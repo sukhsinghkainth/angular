@@ -1,0 +1,42 @@
+.transactions_ {
+    width: 70%;
+    margin: auto;
+}
+
+mat-header-cell {
+    background-color: rgb(87, 87, 87) !important;
+    color: white !important;
+    font-size: 1.8vh !important;
+    text-align: center !important;
+}
+
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 7px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+mat-table {
+    padding-top: 10px !important;
+}
+
+mat-form-field{
+    position: relative;
+    left : 20px;
+}
+#fi{
+    margin-right: 10px;
+    
+}
+
+
+

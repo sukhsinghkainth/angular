@@ -1,0 +1,19 @@
+<div class="login-container" #myForm="ngForm" [formGroup]="userform" (ngSubmit)="onSubmit()">
+    <form class="login-form">
+        <p>Please login to your account</p>
+        <div class="input-group">
+            <input type="email" id="email" name="email" formControlName="email" placeholder="ENTER YOUR MAIL" required>
+        </div>
+        <div class="input-group">
+
+            <input type="password" id="password" name="password" formControlName="password"
+                placeholder="ENTER YOUR PASSWORD" required>
+        </div>
+        <button type="submit" [disabled]="!myForm.valid">LOG IN</button>
+        <div class="bottom-text">
+            <p>don't have an account? <a routerLink="/signup">sign up</a></p>
+            <div *ngIf="error">{{ error }}</div>
+        </div>
+    </form>
+</div>
+<ng-toast [style]="{width:'300px'}"></ng-toast>

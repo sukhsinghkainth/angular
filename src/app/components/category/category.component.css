@@ -1,0 +1,28 @@
+.categories {
+    width: 70%;
+    margin: auto;
+}
+
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 7px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+th {
+    background-color: rgb(87, 87, 87) !important;
+    color: white !important;
+    font-size: 1.8vh !important;
+}
+table {
+    padding-top: 10px;
+}

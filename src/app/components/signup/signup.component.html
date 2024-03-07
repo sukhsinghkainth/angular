@@ -1,0 +1,45 @@
+<!-- <div>
+    <h2>
+        signup
+    </h2>
+    <form #myForm="ngForm" [formGroup]="userform" (ngSubmit)="onsubmit()">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" formControlName="username" required>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" formControlName="email" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" formControlName="password" required>
+        </div>
+        <button type="submit" [disabled]="!myForm.valid">Signup</button>
+        <div *ngIf="loading">Loading...</div>
+        <div *ngIf="error">{{ error }}</div>
+        <div *ngIf="success">{{ success }}</div>
+    </form>
+</div> -->
+
+<div class="login-container" #myForm="ngForm" [formGroup]="userform" (ngSubmit)="onsubmit()">
+    <form class="login-form">
+        <p>Please Sign up to your account</p>
+        <div class="input-group">
+            <input type="text" id="username" name="username" formControlName="username" placeholder="ENTER YOUR USERNAME"
+                required>
+        </div>
+        <div class="input-group">
+            <input type="email" id="email" name="email" formControlName="email" placeholder="ENTER YOUR MAIL" required>
+        </div>
+        <div class="input-group">
+            <input type="password" id="password" name="password" formControlName="password"
+                placeholder="ENTER YOUR PASSWORD" required>
+        </div>
+        <button type="submit" [disabled]="!myForm.valid">SIGN UP</button>
+        <div class="bottom-text">
+            <p>already have an account? <a routerLink="login">login in</a></p>
+            <div *ngIf="error">{{ error }}</div>
+        </div>
+    </form>
+</div>

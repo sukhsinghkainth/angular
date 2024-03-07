@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>Edit Category</h2>
+<mat-dialog-content>
+    <form [formGroup]="budgetForm" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+            <mat-label>category name</mat-label>
+            <input matInput formControlName="categoryName" required readonly>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>limit</mat-label>
+            <input matInput formControlName="limit" required>
+        </mat-form-field>
+        <button   mat-raised-button color="primary" type="submit" [disabled]="">Update</button>
+    </form>
+</mat-dialog-content>

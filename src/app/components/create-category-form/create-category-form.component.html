@@ -1,0 +1,22 @@
+<div class="login-container" #myForm="ngForm" [formGroup]="formCategory" (ngSubmit)="onSubmit()">
+    <form class="login-form">
+        <div class="input-group">
+            <input type="text" id="email" name="email" formControlName="name" placeholder="enter category name"
+                required>
+        </div>
+        <div class="input-group">
+            <mat-form-field>
+                <mat-label>select category type</mat-label>
+                <mat-select formControlName="type">
+                    <mat-option value="income">
+                        income
+                    </mat-option>
+                    <mat-option value="expense">
+                        expense
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <button type="submit" [disabled]="!myForm.valid">Create ></button>
+    </form>
+</div>
