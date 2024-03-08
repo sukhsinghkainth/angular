@@ -26,3 +26,14 @@ th {
 table {
     padding-top: 10px;
 }
+
+
+#fi{
+    margin-right: 10px;
+    
+}
+
+mat-form-field{
+    position: relative;
+    left : 20px;
+}

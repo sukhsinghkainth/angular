@@ -6,7 +6,7 @@ import { TransactionService } from 'src/app/services/transactionService/transact
 import { CreateTransactionComponent } from '../create-transaction/create-transaction.component';
 import { MatPaginator } from '@angular/material/paginator';
 
-@Component({
+@Component({ 
   selector: 'app-transactions',
   templateUrl: './transactions.component.html',
   styleUrls: ['./transactions.component.css']

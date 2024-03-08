@@ -10,17 +10,19 @@ import { ToastService } from 'src/app/services/toast/toast.service';
 import { MatPaginator } from '@angular/material/paginator';
 @Component({
   selector: 'app-category',
-  templateUrl: './category.component.html',
+  templateUrl: './category.component.html', 
   styleUrls: ['./category.component.css']   
 })
 export class CategoryComponent implements OnInit {
   categories!: MatTableDataSource<any>;
   displayedColumns: string[] = ['name', 'type', 'actions'];
+  typeFilter = '';
+  originalCategories: any[] = [];
   category: any[] = [];
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   constructor(private categoryService: CategoryService,
     public dialog: MatDialog,
-    // private toast: NgToastService
     private toast: ToastService
   ) { }
   ngOnInit(): void {
@@ -28,10 +30,21 @@ export class CategoryComponent implements OnInit {
   }
   getCategories(): void {
     this.categoryService.getCategory().subscribe((categories: HttpResponse<any>) => {
-      this.categories = new MatTableDataSource<any>(categories.body);
+      this.originalCategories = categories.body
+      this.categories = new MatTableDataSource<any>(this.originalCategories);
       this.categories.paginator = this.paginator;
+      this.applyFilter()
     });
   }
+
+  applyFilter(){
+        let filterCategories = this.originalCategories.filter(category =>{
+             const isTypeMatch = this.typeFilter === '' || category.type === this.typeFilter;
+             return isTypeMatch;
+        });
+        this.categories.data = filterCategories;
+  }
+
   openCreateCategoryModal() {
     const dialogRef = this.dialog.open(CreateCategoryFormComponent, {
       width: "600px"
