@@ -45,17 +45,12 @@ export class TransactionsComponent implements OnInit {
     })
   }
   applyFilters() {
-    if (this.typeFilter === '' && this.accountTypeFilter === '') {
-      // If both filters are empty, reset the data to the original list of transactions
-      this.getTransactions()
-    } else {
-      // Otherwise, apply the filters
+   // Otherwise, apply the filters
       let filteredTransactions = this.originalTransactions.filter(transaction => {
         const isTypeMatch = this.typeFilter === '' || transaction.type === this.typeFilter;
         const isAccountTypeMatch = this.accountTypeFilter === '' || transaction.account.accountType === this.accountTypeFilter;
         return isTypeMatch && isAccountTypeMatch;
       });
       this.transactions.data = filteredTransactions;
-    }
   }
 }
