@@ -24,8 +24,9 @@ import { TransactionsComponent } from './components/transactions/transactions.co
 import { CreateTransactionComponent } from './components/create-transaction/create-transaction.component';
 import { NgToastModule } from 'ng-angular-popup';
 import { BudgetComponent } from './components/budget/budget.component';
-import { EditBudgetComponent } from './components/edit-budget/edit-budget.component' // to be added
-
+import { EditBudgetComponent } from './components/edit-budget/edit-budget.component';
+import { AccountsComponent } from './components/accounts/accounts.component' // to be added
+import { MatCardModule } from '@angular/material/card';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +41,8 @@ import { EditBudgetComponent } from './components/edit-budget/edit-budget.compon
     CreateTransactionComponent,
     BudgetComponent,
     EditBudgetComponent,
+    AccountsComponent,
+    
     
     
   ],
@@ -56,7 +59,8 @@ import { EditBudgetComponent } from './components/edit-budget/edit-budget.compon
     MatSelectModule,
     MatFormFieldModule,
     MatProgressBarModule,
-    NgToastModule
+    NgToastModule,
+    MatCardModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: CustomInterceptor, multi: true },

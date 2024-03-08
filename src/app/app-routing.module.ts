@@ -7,6 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import { CategoryComponent } from './components/category/category.component';
 import { TransactionsComponent } from './components/transactions/transactions.component';
 import { BudgetComponent } from './components/budget/budget.component';
+import { AccountsComponent } from './components/accounts/accounts.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,11 @@ const routes: Routes = [
   {
     path: 'signup',
     component: SignupComponent
+  },
+  {
+    path: 'accounts',
+    component: AccountsComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'login',
@@ -37,7 +43,6 @@ const routes: Routes = [
     component: TransactionsComponent,
     canActivate: [authGuard]
   },
-
   {
     path: '**',
     redirectTo: 'login'

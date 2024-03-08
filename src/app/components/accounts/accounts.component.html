@@ -1,0 +1,11 @@
+<!-- accounts.component.html -->
+<div class="account-cards">
+    <mat-card *ngFor="let account of accounts" [ngClass]="{'negative-balance': account.balance < 0, 'positive-balance': account.balance > 0}">
+       <mat-card-header>
+         <mat-card-title>{{ account.accountType }}</mat-card-title>
+       </mat-card-header>
+       <mat-card-content>
+         <p>Balance: {{ account.balance | currency }}</p>
+       </mat-card-content>
+    </mat-card>
+   </div>

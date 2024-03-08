@@ -1,0 +1,25 @@
+/* accounts.component.css */
+.account-cards {
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+    margin: 130px auto;
+    flex-wrap: wrap;
+}
+
+.mat-card {
+    width: 300px !important;
+    margin: 10px !important;
+}
+
+.negative-balance {
+    background-color: rgba(255, 0, 0, 0.39);
+    width: 300px !important;
+    margin: 10px !important;
+}
+
+.positive-balance {
+    background-color: rgba(0, 128, 0, 0.473);
+    width: 300px !important;
+    margin: 10px !important;
+}
