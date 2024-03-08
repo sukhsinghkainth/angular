@@ -1,15 +1,13 @@
 .budgets {
     width: 70%;
     margin: auto;
+    
 }
 th {
     background-color: rgb(87, 87, 87) !important;
     color: white !important;
     font-size: 1.8vh !important;
 }
-
-
-
 button {
     padding: 10px;
     border: none;
@@ -27,4 +25,3 @@ button:hover {
 table {
     padding-top: 10px !important;
 }
-

@@ -17,8 +17,12 @@ export class CategoryService {
     return this.http.post<{ message: string }>(this.ApiUrl + '/createCategory', categoryData, { observe: 'response' }).pipe(retry(2),
       catchError(this.handleError))
   }
-  getCategory(): Observable<HttpResponse<any>> {
-    return this.http.get(this.ApiUrl + '/allcategories', { observe: 'response' }).pipe(
+  getCategory(categoryType?: string): Observable<HttpResponse<any>> {
+    let query = `${"/allcategories"}`
+    if (categoryType) {
+      query = `/allcategories/${categoryType}`
+    }
+    return this.http.get(this.ApiUrl + query, { observe: 'response' }).pipe(
       catchError(this.handleError)
     );
   }

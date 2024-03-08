@@ -6,7 +6,11 @@ import { Observable, catchError, retry, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class BudgetService {
-
+  createBudget(budgetData: any): Observable<HttpResponse<any>> {
+    console.log(budgetData);
+    return this.http.post<{ message: string }>(this.ApiUrl + '/setBudget', budgetData, { observe: 'response' }).pipe(retry(2),
+    catchError(this.handleError))
+  }
   private ApiUrl = 'http://localhost:3000/api/v1'
   private handleError(error: HttpErrorResponse) {
     console.log(error)
@@ -20,7 +24,6 @@ export class BudgetService {
   }
 
   updateBudget(data:any) {
-    console.log(data, "in service ")
   const {categoryName , limit } = data
   categoryName as string
     return this.http.put<{ message: string }>(this.ApiUrl + '/updateBudget', {

@@ -2,7 +2,6 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup,  Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { NgToastService } from 'ng-angular-popup';
 import { CategoryService } from 'src/app/services/categoryService/category.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
 
@@ -20,7 +19,6 @@ export class CreateCategoryFormComponent {
   constructor(
     private categoryService: CategoryService,
     private fb: FormBuilder,
-    // private toast : NgToastService,
     private toast : ToastService,
     public dilogRef : MatDialogRef<CreateCategoryFormComponent>) {
     this.formCategory = this.fb.group({

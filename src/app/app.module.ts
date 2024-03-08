@@ -27,6 +27,7 @@ import { BudgetComponent } from './components/budget/budget.component';
 import { EditBudgetComponent } from './components/edit-budget/edit-budget.component';
 import { AccountsComponent } from './components/accounts/accounts.component' // to be added
 import { MatCardModule } from '@angular/material/card';
+import { CreateBudgetComponent } from './components/create-budget/create-budget.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +43,7 @@ import { MatCardModule } from '@angular/material/card';
     BudgetComponent,
     EditBudgetComponent,
     AccountsComponent,
+    CreateBudgetComponent,
     
     
     

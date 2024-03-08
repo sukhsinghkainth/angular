@@ -3,10 +3,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { BudgetService } from 'src/app/services/budgetService/budget.service';
-import { CreateCategoryFormComponent } from '../create-category-form/create-category-form.component';
 import { MatDialog } from '@angular/material/dialog';
 import { EditBudgetComponent } from '../edit-budget/edit-budget.component';
 import { ToastService } from 'src/app/services/toast/toast.service';
+import { CreateBudgetComponent } from '../create-budget/create-budget.component';
 
 
 @Component({
@@ -34,11 +34,12 @@ export class BudgetComponent implements OnInit {
   }
 
   AddnewBudgetModal() {
-    const dialogRef = this.dialog.open(CreateCategoryFormComponent, {
+    const dialogRef = this.dialog.open(CreateBudgetComponent, {
       width: "600px"
     });
     dialogRef.afterClosed().subscribe(() => {
       console.log("closed")
+      this.getBudgets();
     });
   }
 
