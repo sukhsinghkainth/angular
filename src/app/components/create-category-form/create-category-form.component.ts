@@ -1,10 +1,9 @@
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup,  Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { CategoryService } from 'src/app/services/categoryService/category.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
-
 @Component({
   selector: 'app-create-category-form',
   templateUrl: './create-category-form.component.html',
@@ -19,8 +18,8 @@ export class CreateCategoryFormComponent {
   constructor(
     private categoryService: CategoryService,
     private fb: FormBuilder,
-    private toast : ToastService,
-    public dilogRef : MatDialogRef<CreateCategoryFormComponent>) {
+    private toast: ToastService,
+    public dilogRef: MatDialogRef<CreateCategoryFormComponent>) {
     this.formCategory = this.fb.group({
       name: ['', Validators.required],
       type: ['', Validators.required]
@@ -39,7 +38,8 @@ export class CreateCategoryFormComponent {
       console.log(this.success, "here is the success")
       this.loading = false;
       // this.toast.success({ detail: "SUCCESS", summary: this.success, position: 'topCenter' });
-      this.toast.showToast("success",this.success)
+      this.toast.showToast("success", this.success)
+
       setTimeout(() => {
         this.dilogRef.close(true);
         console.log("1 second has passed!");
@@ -50,7 +50,7 @@ export class CreateCategoryFormComponent {
         console.log(errors)
         this.error = errors.error.error;
         // this.toast.error({ detail: 'error', summary: this.error, duration: 2000, position: 'topCenter' })
-     this.toast.showToast('error',this.error)
+        this.toast.showToast('error', this.error)
         this.loading = false
       });
   }
