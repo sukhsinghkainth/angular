@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CategoryService } from 'src/app/services/categoryService/category.service';
-import { HttpResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { EditCategoryComponent } from '../edit-category/edit-category.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { CreateCategoryFormComponent } from '../create-category-form/create-category-form.component';
@@ -10,12 +10,12 @@ import { ToastService } from 'src/app/services/toast/toast.service';
 import { MatPaginator } from '@angular/material/paginator';
 @Component({
   selector: 'app-category',
-  templateUrl: './category.component.html', 
-  styleUrls: ['./category.component.css']   
+  templateUrl: './category.component.html',
+  styleUrls: ['./category.component.css']
 })
 export class CategoryComponent implements OnInit {
   categories!: MatTableDataSource<any>;
-  displayedColumns: string[] = ['name', 'type', 'actions'];
+  displayedColumns: string[] = ['name', 'type', 'actions', 'delete'];
   typeFilter = '';
   originalCategories: any[] = [];
   category: any[] = [];
@@ -37,12 +37,23 @@ export class CategoryComponent implements OnInit {
     });
   }
 
-  applyFilter(){
-        let filterCategories = this.originalCategories.filter(category =>{
-             const isTypeMatch = this.typeFilter === '' || category.type === this.typeFilter;
-             return isTypeMatch;
-        });
-        this.categories.data = filterCategories;
+  deleteCategory(name: string) {
+    this.categoryService.deleteCategory(name).subscribe((resp: HttpResponse<any>) => {
+      console.log(resp)
+      this.toast.showToast("success",resp.body.message)
+      this.getCategories()
+    }, (error: HttpErrorResponse) => {
+      console.log(error.error.error)
+      this.toast.showToast("error",error.error.error)
+    })
+  }
+
+  applyFilter() {
+    let filterCategories = this.originalCategories.filter(category => {
+      const isTypeMatch = this.typeFilter === '' || category.type === this.typeFilter;
+      return isTypeMatch;
+    });
+    this.categories.data = filterCategories;
   }
 
   openCreateCategoryModal() {

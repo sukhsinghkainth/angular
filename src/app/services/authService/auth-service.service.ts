@@ -21,7 +21,7 @@ export class AuthServiceService {
       catchError(this.handleError))
   }
   isAuthenticated() {
-    return localStorage.getItem('token') != null;
+    return localStorage.getItem('token') != null ;
   }
   loggedOut() {
     return localStorage.removeItem('token');

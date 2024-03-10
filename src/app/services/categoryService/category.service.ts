@@ -17,6 +17,11 @@ export class CategoryService {
     return this.http.post<{ message: string }>(this.ApiUrl + '/createCategory', categoryData, { observe: 'response' }).pipe(retry(2),
       catchError(this.handleError))
   }
+  deleteCategory(name : string):Observable<HttpResponse<any>>{
+     return this.http.delete(this.ApiUrl+`/deleteCategory/${name}`,{observe:'response'}).pipe(
+      catchError(this.handleError)
+     )
+  }
   getCategory(categoryType?: string): Observable<HttpResponse<any>> {
     let query = `${"/allcategories"}`
     if (categoryType) {
