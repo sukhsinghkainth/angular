@@ -32,7 +32,12 @@
                 <button mat-raised-button color="primary" (click)="openEditBudget(budget)">Edit</button>
             </td>
         </ng-container>
-
+        <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef> Delete </th>
+            <td mat-cell *matCellDef="let budget">
+                <button mat-raised-button color="primary" (click)="deleteBudget(budget.category.name)">delete</button>
+            </td>
+        </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>

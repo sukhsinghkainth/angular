@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { EditBudgetComponent } from '../edit-budget/edit-budget.component';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { CreateBudgetComponent } from '../create-budget/create-budget.component';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 
 
 @Component({
@@ -16,7 +17,7 @@ import { CreateBudgetComponent } from '../create-budget/create-budget.component'
 })
 export class BudgetComponent implements OnInit {
   budgets!: MatTableDataSource<any>;
-  displayedColumns: string[] = ['categoryName', 'categoryType', 'limit', 'remainingLimit', 'spent', 'actions'];
+  displayedColumns: string[] = ['categoryName', 'categoryType', 'limit', 'remainingLimit', 'spent', 'actions', 'delete'];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   constructor(private budget: BudgetService,
     private toast: ToastService,
@@ -32,7 +33,14 @@ export class BudgetComponent implements OnInit {
       this.budgets.paginator = this.paginator;
     });
   }
-
+  deleteBudget(data: any) {
+    this.budget.deleteBudget(data).subscribe((resp: HttpResponse<any>) => {
+      this.toast.showToast('success', resp.body.message)
+      this.getBudgets();
+    }, (error: HttpErrorResponse) => {
+      this.toast.showToast('error', error.error.error)
+    })
+  }
   AddnewBudgetModal() {
     const dialogRef = this.dialog.open(CreateBudgetComponent, {
       width: "600px"

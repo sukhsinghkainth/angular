@@ -9,7 +9,7 @@ export class BudgetService {
   createBudget(budgetData: any): Observable<HttpResponse<any>> {
     console.log(budgetData);
     return this.http.post<{ message: string }>(this.ApiUrl + '/setBudget', budgetData, { observe: 'response' }).pipe(retry(2),
-    catchError(this.handleError))
+      catchError(this.handleError))
   }
   private ApiUrl = 'http://localhost:3000/api/v1'
   private handleError(error: HttpErrorResponse) {
@@ -22,12 +22,17 @@ export class BudgetService {
       catchError(this.handleError)
     );
   }
-
-  updateBudget(data:any) {
-  const {categoryName , limit } = data
-  categoryName as string
+  deleteBudget(data : any):Observable<HttpResponse<any>>{
+    console.log(data);
+    return this.http.delete(this.ApiUrl+`/deleteBudget/${data}`, {observe : 'response'}).pipe(
+      catchError(this.handleError)
+    )
+  }
+  updateBudget(data: any) {
+    const { categoryName, limit } = data
+    categoryName as string
     return this.http.put<{ message: string }>(this.ApiUrl + '/updateBudget', {
-       categoryName,limit
+      categoryName, limit
     }, { observe: 'response' }).pipe(
       retry(2),
 
