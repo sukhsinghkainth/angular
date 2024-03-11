@@ -57,7 +57,7 @@ export class AccountsComponent implements OnInit {
 
     const label2 = ['Income', 'Expense'];
     const data2 = [this.totalIncome, this.totalExpense];
-    const color = ['#00ff00', '#ff0000'];
+    const color = ['#01F80A', '#E51717'];
 
     // Render the income vs. expense chart
     this.chartService.RenderChart(label2, data2, color, 'pie', 'incomeExpenseChart');

@@ -1,38 +1,32 @@
-
 <div class="account-cards">
-    <mat-card *ngFor="let account of accounts" [ngClass]="{'negative-balance': account.balance < 0, 'positive-balance': account.balance > 0}">
-       <mat-card-header>
-         <mat-card-title>{{ account.accountType }}</mat-card-title>
-       </mat-card-header>
-       <mat-card-content>
-         <p>Balance: {{ account.balance | currency  }}</p>
-       </mat-card-content>
-    </mat-card>
-    
-    <mat-card ngClass="positive-balance">
-      <mat-card-header>
-        <mat-card-title>Total Income</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p>Total Income: {{ totalIncome | currency }}</p>
-      </mat-card-content>
-    </mat-card>
-    
-    <mat-card ngClass="negative-balance">
-      <mat-card-header>
-        <mat-card-title>Total Expense</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p>Total Expense: {{ totalExpense | currency }}</p>
-      </mat-card-content>
-    </mat-card>
-  </div>
-  <div id="chart">
-    <canvas id="accountChart"></canvas>
-    <canvas id="incomeExpenseChart"></canvas>
-   </div>
-  
-   
-   
+  <mat-card *ngFor="let account of accounts"
+    [ngClass]="{'negative-balance': account.balance < 0, 'positive-balance': account.balance > 0}">
+    <mat-card-header>
+      <mat-card-title>{{ account.accountType }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>Balance: {{ account.balance | currency }}</p>
+    </mat-card-content>
+  </mat-card>
+  <mat-card ngClass="positive-balance">
+    <mat-card-header>
+      <mat-card-title>Total Income</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>Total Income: {{ totalIncome | currency }}</p>
+    </mat-card-content>
+  </mat-card>
 
-
+  <mat-card ngClass="negative-balance">
+    <mat-card-header>
+      <mat-card-title>Total Expense</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>Total Expense: {{ totalExpense | currency }}</p>
+    </mat-card-content>
+  </mat-card>
+</div>
+<div id="chart">
+  <canvas id="accountChart"></canvas>
+  <canvas id="incomeExpenseChart"></canvas>
+</div>

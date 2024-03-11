@@ -27,7 +27,7 @@ export class LoginComponent {
     private auth: AuthServiceService,
     private router: Router,
     private fb: FormBuilder,
-    private toasts : ToastService
+    private toasts: ToastService
   ) {
     this.userform = this.fb.group({
       email: ['', Validators.required],
@@ -89,13 +89,10 @@ export class LoginComponent {
           // Redirect to dashboard or any other page
           this.success = res.body.Response.username + " log in successfully"
           // this.toast.success({ detail: "SUCCESS", summary: this.success, position: 'topCenter' });
-          this.toasts.showToast("success",this.success)
+          this.toasts.showToast("success", this.success)
           setTimeout(() => {
-            // Your code here will run after 1 second
-            this.router.navigate([''])
+            this.router.navigate([''], { queryParams: { refresh: Date.now() } })
           }, 1000);
-
-
         } else {
           this.error = 'Invalid response from server';
         }
@@ -104,7 +101,7 @@ export class LoginComponent {
       (error: HttpErrorResponse) => {
         this.error = error.error.message || 'An error occurred while logging in';
         // this.toast.error({ detail: 'error', summary: this.error, duration: 2000, position: 'topCenter' })
-        this.toasts.showToast("error",error.error.message)
+        this.toasts.showToast("error", error.error.message)
         this.loading = false;
       }
     );
