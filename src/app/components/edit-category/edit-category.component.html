@@ -7,10 +7,6 @@
         </mat-form-field>
         <mat-form-field>
             <mat-label>Type</mat-label>
-            <!-- <mat-select formControlName="type" readonly>
-                <mat-option value="expense">Expense</mat-option>
-                <mat-option value="income">Income</mat-option>
-            </mat-select> -->
             <input matInput formControlName="type" required readonly>
         </mat-form-field>
         <button mat-raised-button color="primary" type="submit" [disabled]="categoryForm.invalid">Update</button>

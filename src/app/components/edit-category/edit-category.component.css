@@ -1,2 +1,16 @@
 @import url('/src/app/components/category/category.component.css');
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 7px;
+    background-color: #007bff;
+    margin-left: 29px;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
+button:hover {
+    background-color: #0056b3;
+}
