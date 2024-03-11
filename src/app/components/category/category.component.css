@@ -37,3 +37,6 @@ mat-form-field{
     position: relative;
     left : 20px;
 }
+.header{
+    width: 120px !important;
+}
