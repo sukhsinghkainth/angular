@@ -1,3 +1,4 @@
+import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from 'src/app/services/accountService/account.service';
 import { ChartService } from 'src/app/services/chart.service';
@@ -19,7 +20,7 @@ export class AccountsComponent implements OnInit {
   }
 
   getAccount(): void {
-    this.accountService.getAccounts().subscribe((response: any) => {
+    this.accountService.getAccounts().subscribe((response: HttpResponse<any>) => {
       this.accounts = response.body;
       this.totalIncome = this.calculateTotal('income');
       this.totalExpense = this.calculateTotal('expense');

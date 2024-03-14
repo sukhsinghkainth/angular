@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { AuthServiceService } from 'src/app/services/authService/auth-service.service';
 import { Router } from '@angular/router';
+import { ToastService } from 'src/app/services/toast/toast.service';
 
 @Component({
   selector: 'app-signup',
@@ -14,17 +15,11 @@ export class SignupComponent {
   error = '';
   success: string[] = []; // Change success to be an array of strings
   userform: FormGroup;
-
-  // userform: FormGroup = new FormGroup({
-  //   username: new FormControl('', Validators.required),
-  //   email: new FormControl('', Validators.required),
-  //   password: new FormControl('', Validators.required)
-  // });
-
   constructor(
     private auth: AuthServiceService,
     private router: Router,
-    private fb: FormBuilder) {
+    private fb: FormBuilder,
+    private toast : ToastService) {
     this.userform = this.fb.group({
       username: ['', Validators.required],
       email: ['', Validators.required],
@@ -39,6 +34,7 @@ export class SignupComponent {
     this.auth.signup(userData).subscribe((res: HttpResponse<any>) => {
       console.log(res.body.message)
       this.success = res.body.messaage
+      this.toast.showToast('success', this.success)
       this.loading = false;
       this.router.navigate(['/login']);
     },

@@ -5,7 +5,9 @@
     width: 50%;
     margin: 13px auto;
     flex-wrap: wrap;
+
 }
+
 
 .mat-card {
     width: 300px !important;

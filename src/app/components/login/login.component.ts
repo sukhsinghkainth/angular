@@ -34,42 +34,6 @@ export class LoginComponent {
       password: ['', Validators.required]
     });
   }
-
-  // onsubmit() {
-  //   this.loading = true;
-  //   this.error = '';
-  //   this.success = [];
-  //   const userData = this.userform.value;
-  //   console.log(userData)
-  //   // this.auth.signup(userData).subscribe((res: HttpResponse<any>) => {
-  //   //   console.log(res.body.message)
-  //   //   this.success = res.body.messaage
-  //   //   this.loading = false;
-  //   //   this.router.navigate(['/login']);
-  //   // },
-  //   //   (errors: HttpErrorResponse) => {
-  //   //     // console.log(error)
-  //   //     console.log(errors)
-  //   //     this.error = errors.error.error;
-  //   //     this.loading = false
-  //   //   });
-
-
-
-  //   //   .subscribe((response: HttpResponse<any>) => {
-  //   //     console.log(response.body.messaage)
-
-  //   //     this.success = response.body.messaage
-  //   //     this.loading = false;
-
-  //   //   }, (error: HttpErrorResponse) => {
-  //   //     // console.log(error)
-  //   //     this.error = error.error.error;
-  //   //     console.log(error.error.error)
-  //   //     this.loading = false;
-  //   //   });
-  // }
-
   onSubmit() {
     this.loading = true;
     this.error = '';
@@ -88,7 +52,6 @@ export class LoginComponent {
           console.log('Email:', user.email);
           // Redirect to dashboard or any other page
           this.success = res.body.Response.username + " log in successfully"
-          // this.toast.success({ detail: "SUCCESS", summary: this.success, position: 'topCenter' });
           this.toasts.showToast("success", this.success)
           setTimeout(() => {
             this.router.navigate([''], { queryParams: { refresh: Date.now() } })
@@ -100,7 +63,6 @@ export class LoginComponent {
       },
       (error: HttpErrorResponse) => {
         this.error = error.error.message || 'An error occurred while logging in';
-        // this.toast.error({ detail: 'error', summary: this.error, duration: 2000, position: 'topCenter' })
         this.toasts.showToast("error", error.error.message)
         this.loading = false;
       }
