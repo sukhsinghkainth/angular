@@ -24,19 +24,26 @@
     margin: 10px !important;
 }
 #chart{
-   
+   margin-top: 70px;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
+    gap: 190px;
     display: flex;
-    gap: 10vw;  
     overflow: hidden;
 }
-
 #accountChart{ 
-      width: 550px !important;
-      height: 550px !important;
+      width: 450px !important;
+      height: 450px !important;
 }
 #incomeExpenseChart{
-    width: 550px !important;
-height:  550px !important;
+    width: 450px !important;
+height:  450px !important;
+}
+#overviews{
+    display: flex;
+   justify-content: space-around;
+   align-items: center;
+   margin-top: 70px;
+   padding: 20px;
+   border: 2px solid rgba(34, 36, 34, 0.301);
 }
