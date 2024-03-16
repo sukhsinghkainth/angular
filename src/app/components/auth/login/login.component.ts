@@ -1,7 +1,7 @@
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { AuthServiceService } from 'src/app/services/authService/auth-service.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
 
@@ -42,8 +42,9 @@ export class LoginComponent {
           this.success = res.body.Response.username + " log in successfully"
           this.toasts.showToast("success", this.success)
           setTimeout(() => {
-            this.router.navigateByUrl('');
-          }, 1000);
+            this.router.navigate(['']).then(() => {
+              window.location.reload();})  
+          }, 600);
         } else {
           this.error = 'Invalid response from server';
         }
