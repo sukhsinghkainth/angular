@@ -1,14 +1,8 @@
-html,
-body {
+#wrapper {
     height: 100vh;
-    width: 100vw;
-}
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-#wrapper{
-    width: 100vw;
-    height: 100vh;
+    /* width: 100vw; */
+    overflow-x: hidden;
+    /* color:  white; */
+    background-image: linear-gradient(to bottom, #031830, #0e233e, #1a2f4c, #253c5a, #314969, #3b5779, #456589, #4f7499, #5a87ae, #659bc2, #70b0d7, #7cc5eb);    background-repeat: no-repeat;
+    background-size: cover;
 }
