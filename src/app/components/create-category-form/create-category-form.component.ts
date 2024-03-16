@@ -12,7 +12,7 @@ import { ToastService } from 'src/app/services/toast/toast.service';
 export class CreateCategoryFormComponent {
   loading = false;
   error = '';
-  success = ''; // Change success to be an array of strings
+  success = ''; 
   formCategory: FormGroup;
 
   constructor(
@@ -37,7 +37,6 @@ export class CreateCategoryFormComponent {
       this.success = res.body.message
       console.log(this.success, "here is the success")
       this.loading = false;
-      // this.toast.success({ detail: "SUCCESS", summary: this.success, position: 'topCenter' });
       this.toast.showToast("success", this.success)
 
       setTimeout(() => {
@@ -46,10 +45,8 @@ export class CreateCategoryFormComponent {
       }, 500);
     },
       (errors: HttpErrorResponse) => {
-        // console.log(error)
         console.log(errors)
         this.error = errors.error.error;
-        // this.toast.error({ detail: 'error', summary: this.error, duration: 2000, position: 'topCenter' })
         this.toast.showToast('error', this.error)
         this.loading = false
       });

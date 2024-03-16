@@ -5,6 +5,7 @@ import { CategoryService } from 'src/app/services/categoryService/category.servi
 import { TransactionService } from 'src/app/services/transactionService/transaction.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ToastService } from 'src/app/services/toast/toast.service';
+import { Icategory } from 'src/app/datatypes/dataTypes';
 
 @Component({
   selector: 'app-create-transaction',
@@ -14,7 +15,7 @@ import { ToastService } from 'src/app/services/toast/toast.service';
 export class CreateTransactionComponent implements OnInit {
   form !: FormGroup;
   type: string = '';
-  categories: any[] = [];
+  categories: Icategory[] = [];
   constructor(private formBuilder: FormBuilder, private categoryService: CategoryService,
     private transactionService: TransactionService,
     private toast: ToastService,
@@ -34,14 +35,12 @@ export class CreateTransactionComponent implements OnInit {
   loadCategories() {
     this.categoryService.getCategory().subscribe(response => {
       this.categories = response.body; // Adjust based on the actual response structure
-
     });
   }
   onSubmit() {
     console.log(this.form.value);
     this.transactionService.createTransaction(this.form.value).subscribe((res: HttpResponse<any>) => {
       this.toast.showToast('success', `${res.body.message}`)
-      console.log(res)
       setTimeout(() => {
         this.dilogRef.close(true);
       }, 900);
@@ -54,7 +53,7 @@ export class CreateTransactionComponent implements OnInit {
   onTypeChange() {
     this.type = this.form.get('type')?.value;
   }
-  getFilteredCategories(type: string): any[] {
+  getFilteredCategories(type: string): Icategory[] {
     return this.categories.filter(c => c.type === type);
   }
 }

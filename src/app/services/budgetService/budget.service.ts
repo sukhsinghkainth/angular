@@ -1,6 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, retry, throwError } from 'rxjs';
+import { Budget } from 'src/app/datatypes/dataTypes';
 
 @Injectable({
   providedIn: 'root'
@@ -22,14 +23,14 @@ export class BudgetService {
       catchError(this.handleError)
     );
   }
-  deleteBudget(data : any):Observable<HttpResponse<any>>{
+  deleteBudget(data : Budget):Observable<HttpResponse<any>>{
     console.log(data);
     return this.http.delete(this.ApiUrl+`/deleteBudget/${data}`, {observe : 'response'}).pipe(
       catchError(this.handleError)
     )
   }
   updateBudget(data: any) {
-    const { categoryName, limit } = data
+    const { categoryName , limit } = data
     categoryName as string
     return this.http.put<{ message: string }>(this.ApiUrl + '/updateBudget', {
       categoryName, limit

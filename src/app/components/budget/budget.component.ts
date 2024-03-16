@@ -8,6 +8,7 @@ import { EditBudgetComponent } from '../edit-budget/edit-budget.component';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { CreateBudgetComponent } from '../create-budget/create-budget.component';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { Budget } from 'src/app/datatypes/dataTypes';
 
 
 @Component({
@@ -16,7 +17,7 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
   styleUrls: ['./budget.component.css']
 })
 export class BudgetComponent implements OnInit {
-  budgets!: MatTableDataSource<any>;
+  budgets!: MatTableDataSource<Budget>;
   displayedColumns: string[] = ['categoryName', 'categoryType', 'limit', 'remainingLimit', 'spent', 'actions', 'delete'];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   constructor(private budget: BudgetService,
@@ -27,13 +28,13 @@ export class BudgetComponent implements OnInit {
   }
 
   getBudgets(): void {
-    this.budget.allBudgets().subscribe((response: any) => {
+    this.budget.allBudgets().subscribe((response: HttpResponse<any>) => {
       console.log(response)
-      this.budgets = new MatTableDataSource<any>(response.body.budget);
+      this.budgets = new MatTableDataSource<Budget>(response.body.budget);
       this.budgets.paginator = this.paginator;
     });
   }
-  deleteBudget(data: any) {
+  deleteBudget(data: Budget) {
     this.budget.deleteBudget(data).subscribe((resp: HttpResponse<any>) => {
       this.toast.showToast('success', resp.body.message)
       this.getBudgets();
@@ -51,9 +52,7 @@ export class BudgetComponent implements OnInit {
     });
   }
 
-  openEditBudget(budget: any): void {
-    console.log(budget)
-    console.log(budget.category.name)
+  openEditBudget(budget: Budget): void {
     const dialogRef = this.dialog.open(EditBudgetComponent, {
       width: '600px',
       data: { categoryName: budget.category.name }

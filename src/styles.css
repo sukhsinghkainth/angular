@@ -10,3 +10,27 @@ html,body{
     height: 100vh;
     width: 100vw;
 }
+.cdk-overlay-pane:not(.mat-mdc-select-panel-above) div.mat-mdc-select-panel {
+    background-color: rgba(0, 0, 0, 0.811);
+}
+.mat-mdc-select-value-text {
+    color: rgba(255, 255, 255, 0.878);
+}
+.mat-mdc-option .mdc-list-item__primary-text {
+    color: white;
+}
+.mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper{
+    background-color: rgba(0, 0, 0, 0.28);
+}
+.mat-mdc-form-field:not(.mat-form-field-disabled) .mat-mdc-floating-label.mdc-floating-label
+{
+    color: white;
+}
+.mdc-text-field--filled:not(.mdc-text-field--disabled){
+    background-color: rgba(0, 0, 0, 0.28) !important;
+}
+
+.input-group[_ngcontent-ng-c2920306241] input[_ngcontent-ng-c2920306241]{
+    background-color: rgba(0, 0, 0, 0.28) !important;
+
+}

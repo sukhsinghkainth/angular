@@ -2,6 +2,7 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Icategory } from 'src/app/datatypes/dataTypes';
 import { BudgetService } from 'src/app/services/budgetService/budget.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class EditBudgetComponent implements OnInit {
   constructor(public dilogRef: MatDialogRef<EditBudgetComponent>,
     private BudgetService: BudgetService,
 
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public data: Icategory,
     private fb: FormBuilder
   ) {
     this.budgetForm = this.fb.group({
@@ -33,18 +34,13 @@ export class EditBudgetComponent implements OnInit {
 
   }
   onSubmit(): void {
-    console.log("herer")
-    console.log(this.data)
     console.log(this.budgetForm.value)
     this.BudgetService.updateBudget(this.budgetForm.value).subscribe((res: HttpResponse<any>) => {
-      console.log(res)
       this.dilogRef.close(true);
-
     },
       (error: HttpErrorResponse) => {
         console.log(this.error)
       }
     )
   }
-
 } 

@@ -1,7 +1,7 @@
 <div id="wrapper">
 
   <div class="account-cards">
-      <mat-card *ngFor="let account of accounts" [ngClass]="{'negative-balance': account.balance < 0, 'positive-balance': account.balance > 0}">
+      <mat-card *ngFor="let account of accounts" [ngClass]="{'negative-balance': account.balance !== undefined && account.balance < 0, 'positive-balance': account.balance !== undefined && account.balance > 0}">
          <mat-card-header>
            <mat-card-title>{{ account.accountType }}</mat-card-title>
          </mat-card-header>
@@ -32,11 +32,7 @@
       <canvas id="accountChart"></canvas>
       <canvas id="incomeExpenseChart"></canvas>
      </div>
-     <div id='overviews'>
-        <p id="overview2">ACCOUNT ANLYSIS</p>
-        <p id="overview">
-          INCOME EXPENSE OVERVIEW
-        </p> 
+     <div>
      </div>
 </div>
 

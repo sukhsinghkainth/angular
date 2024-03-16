@@ -8,6 +8,7 @@ import { CreateCategoryFormComponent } from '../create-category-form/create-cate
 // import { NgToastService } from 'ng-angular-popup';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { MatPaginator } from '@angular/material/paginator';
+import { Icategory } from 'src/app/datatypes/dataTypes';
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
@@ -17,8 +18,8 @@ export class CategoryComponent implements OnInit {
   categories!: MatTableDataSource<any>;
   displayedColumns: string[] = ['name', 'type', 'actions', 'delete'];
   typeFilter = '';
-  originalCategories: any[] = [];
-  category: any[] = [];
+  originalCategories: Icategory[] = [];
+  category: Icategory[] = [];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   constructor(private categoryService: CategoryService,
@@ -29,9 +30,11 @@ export class CategoryComponent implements OnInit {
     this.getCategories();
   }
   getCategories(): void {
+    
     this.categoryService.getCategory().subscribe((categories: HttpResponse<any>) => {
-      this.originalCategories = categories.body
-      this.categories = new MatTableDataSource<any>(this.originalCategories);
+      this.originalCategories = categories.body 
+    console.log(this.originalCategories)
+      this.categories = new MatTableDataSource<Icategory>(this.originalCategories);
       this.categories.paginator = this.paginator;
       this.applyFilter()
     });
@@ -65,7 +68,7 @@ export class CategoryComponent implements OnInit {
       this.getCategories()
     });
   }
-  openEditCategoryDialog(category: any): void {
+  openEditCategoryDialog(category: Icategory): void {
     console.log(category)
     const dialogRef = this.dialog.open(EditCategoryComponent, {
       width: '600px',

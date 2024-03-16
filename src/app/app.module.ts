@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SignupComponent } from './components/signup/signup.component';
@@ -15,17 +15,17 @@ import { CreateCategoryFormComponent } from './components/create-category-form/c
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { CategoryComponent } from './components/category/category.component';
 import { EditCategoryComponent } from './components/edit-category/edit-category.component';
-import { MatPaginatorModule} from '@angular/material/paginator';
-import { MatTableModule} from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
 import { TransactionsComponent } from './components/transactions/transactions.component';
 import { CreateTransactionComponent } from './components/create-transaction/create-transaction.component';
 import { NgToastModule } from 'ng-angular-popup';
 import { BudgetComponent } from './components/budget/budget.component';
 import { EditBudgetComponent } from './components/edit-budget/edit-budget.component';
-import { AccountsComponent } from './components/accounts/accounts.component' // to be added
+import { AccountsComponent } from './components/accounts/accounts.component'
 import { MatCardModule } from '@angular/material/card';
 import { CreateBudgetComponent } from './components/create-budget/create-budget.component';
 @NgModule({
@@ -43,11 +43,7 @@ import { CreateBudgetComponent } from './components/create-budget/create-budget.
     BudgetComponent,
     EditBudgetComponent,
     AccountsComponent,
-    CreateBudgetComponent,
-    
-    
-    
-  ],
+    CreateBudgetComponent,],
   imports: [
     BrowserModule,
     MatPaginatorModule,

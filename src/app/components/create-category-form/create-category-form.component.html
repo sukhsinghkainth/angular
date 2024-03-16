@@ -1,8 +1,13 @@
 <div class="login-container" #myForm="ngForm" [formGroup]="formCategory" (ngSubmit)="onSubmit()">
     <form class="login-form">
         <div class="input-group">
-            <input type="text" id="email" name="email" formControlName="name" placeholder="enter category name"
-                required>
+            <mat-form-field>
+                <mat-label>enter category name</mat-label>
+                <input matInput type="number" formControlName="name">
+                <mat-error *ngIf="formCategory.get('name')?.hasError('required')">
+                    name is required
+                </mat-error>
+            </mat-form-field>
         </div>
         <div class="input-group">
             <mat-form-field>
@@ -15,8 +20,11 @@
                         expense
                     </mat-option>
                 </mat-select>
+                <mat-error *ngIf="formCategory.get('type')?.hasError('required')">
+                    category type is required
+                </mat-error>
             </mat-form-field>
         </div>
-        <button type="submit" [disabled]="!myForm.valid">Create ></button>
+        <button type="submit" [disabled]="!myForm.valid">Create</button>
     </form>
 </div>

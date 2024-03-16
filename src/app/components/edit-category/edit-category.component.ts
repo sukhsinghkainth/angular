@@ -2,6 +2,7 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Icategory } from 'src/app/datatypes/dataTypes';
 import { CategoryService } from 'src/app/services/categoryService/category.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class EditCategoryComponent implements OnInit {
   error = '';
   constructor(
     public dialogRef: MatDialogRef<EditCategoryComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public data: Icategory,
     private categoryService: CategoryService,
     private fb: FormBuilder
   ) {
@@ -33,13 +34,11 @@ export class EditCategoryComponent implements OnInit {
   ngOnInit(): void { }
 
   onSubmit(): void {
-    console.log("herer")
     this.categoryService.editCategory(this.data.name, this.categoryForm.value).subscribe((res: HttpResponse<any>) => {
-      console.log(res)
       this.dialogRef.close(true);
     },
       (error: HttpErrorResponse) => {
-        this.error = error.error.message || 'An error occurred while logging in';
+        this.error = error.error.message;
       }
     );
   }

@@ -5,6 +5,7 @@ import { CategoryService } from 'src/app/services/categoryService/category.servi
 import { BudgetService } from 'src/app/services/budgetService/budget.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { Icategory } from 'src/app/datatypes/dataTypes';
 
 @Component({
   selector: 'app-create-budget',
@@ -13,7 +14,7 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 })
 export class CreateBudgetComponent implements OnInit {
   budgetForm: FormGroup;
-  categories: any[] = [];
+  categories: Icategory[] = [];
  
   constructor(
      private fb: FormBuilder,
@@ -40,7 +41,7 @@ export class CreateBudgetComponent implements OnInit {
  
   onSubmit(): void {
      if (this.budgetForm.valid) {
-       const budgetData = this.budgetForm.value;
+       const budgetData = this.budgetForm.value  as Icategory;
        this.budgetService.createBudget(budgetData).subscribe(
          (res: HttpResponse<any>) => {
            this.toast.showToast('success', `${res.body.message}`);

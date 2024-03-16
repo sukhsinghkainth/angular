@@ -2,7 +2,7 @@
     <div class="top">
         <button mat-raised-button (click)="openCreateCategoryModal()">Add New Category</button>
         <mat-form-field id="fi">
-            <mat-label>Type</mat-label>
+            <mat-label>FILTER</mat-label>
             <mat-select [(value)]="typeFilter" (selectionChange)="applyFilter()">
                 <mat-option value="">All</mat-option>
                 <mat-option value="income">Income</mat-option>
@@ -34,6 +34,6 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    <mat-paginator class="paginator" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
 <ng-toast [style]="{width:'300px'}"></ng-toast>

@@ -7,7 +7,7 @@ Chart.register(...registerables)
 })
 export class ChartService {
   constructor() { }
-  RenderChart(labelData: any, mainData: any, colorData: any, typeofChart: any, id: any) {
+  RenderChart(labelData: any, mainData: any, colorData: any, typeofChart: any, id: string) {
     new Chart(id, {
       type: typeofChart,
       data: {
@@ -23,9 +23,16 @@ export class ChartService {
       options: {
         scales: {
           y: {
-            beginAtZero: true
-          }
-        }
+            grid: {
+              color: 'rgba(0, 0, 0, 1)', // Set the grid lines to black
+              borderDash: [5, 5] // Optional: Add dashed lines
+          },
+            beginAtZero: true,
+            ticks: {
+              color: 'black', // Set the label color to white
+            }
+          },
+        },  
       }
     });
 

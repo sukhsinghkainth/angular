@@ -1,5 +1,6 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Account, Transaction, categoryType } from 'src/app/datatypes/dataTypes';
 import { AccountService } from 'src/app/services/accountService/account.service';
 import { ChartService } from 'src/app/services/chart.service';
 @Component({
@@ -8,7 +9,7 @@ import { ChartService } from 'src/app/services/chart.service';
   styleUrls: ['./accounts.component.css']
 })
 export class AccountsComponent implements OnInit {
-  accounts: any;
+  accounts: Account[] = [];
   totalIncome: number = 0;
   totalExpense: number = 0;
   constructor(
@@ -20,40 +21,39 @@ export class AccountsComponent implements OnInit {
   }
 
   getAccount(): void {
-    this.accountService.getAccounts().subscribe((response: HttpResponse<any>) => {
-      this.accounts = response.body;
-      this.totalIncome = this.calculateTotal('income');
-      this.totalExpense = this.calculateTotal('expense');
+    this.accountService.getAccounts().subscribe((response: HttpResponse<Account[]>) => {
       console.log(response.body)
-      this.accounts.forEach((account: { balance: number; transactions: any[]; }) => {
+      this.accounts = response.body || [];
+      this.totalIncome = this.calculateTotal(categoryType.income);
+      this.totalExpense = this.calculateTotal(categoryType.expense);
+      this.accounts.forEach((account) => {
         account.balance = this.calculateBalance(account.transactions);
-
       });
       this.generateChart();
     });
   }
 
-  calculateTotal(type: string): number {
-    return this.accounts.reduce((total: any, account: { transactions: any[]; }) => {
+  calculateTotal(type: categoryType): number {
+    return this.accounts.reduce((total: number, account: { transactions: Transaction[]; }) => {
       return total + account.transactions.filter(transaction => transaction.type === type)
         .reduce((sum, transaction) => sum + transaction.amount, 0);
     }, 0);
   }
-  
 
-  calculateBalance(transactions: any[]): number {
+
+  calculateBalance(transactions: Transaction[]): number {
     return transactions.reduce((balance, transaction) => {
       return balance + (transaction.type === 'income' ? transaction.amount : -transaction.amount);
     }, 0);
   }
   generateChart(): void {
-    const labelData = this.accounts.map((account: any) => account.accountType);
-    const balanceData = this.accounts.map((account: any) => account.balance);
+    const labelData = this.accounts.map((account) => account.accountType);
+    const balanceData = this.accounts.map((account) => account.balance);
     const colors = [
       'rgb(255, 99, 132)',
       'rgb(54, 162, 235)',
       'rgb(255, 205, 86)'
-    ]; 
+    ];
     this.chartService.RenderChart(labelData, balanceData, colors, 'doughnut', 'accountChart');
 
     const label2 = ['Income', 'Expense'];

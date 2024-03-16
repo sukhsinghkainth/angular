@@ -1,6 +1,9 @@
 <!-- src/app/budget/budget.component.html -->
 <div class="budgets">
-    <button mat-raised-button (click)="AddnewBudgetModal()">Add New budget</button>
+
+    <div class="top">
+        <button mat-raised-button (click)="AddnewBudgetModal()">Add New budget</button>
+    </div>
     <table mat-table [dataSource]="budgets" class="full-width-table" matSort>
         <ng-container matColumnDef="categoryName">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Category Name </th>
@@ -41,7 +44,7 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    <mat-paginator class="paginator" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 
 </div>
 <ng-toast [style]="{width:'300px'}"></ng-toast>
