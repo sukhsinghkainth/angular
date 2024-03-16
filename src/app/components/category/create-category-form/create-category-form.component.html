@@ -3,7 +3,7 @@
         <div class="input-group">
             <mat-form-field>
                 <mat-label>enter category name</mat-label>
-                <input matInput type="number" formControlName="name">
+                <input matInput type="text" formControlName="name">
                 <mat-error *ngIf="formCategory.get('name')?.hasError('required')">
                     name is required
                 </mat-error>
