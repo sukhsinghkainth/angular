@@ -2,7 +2,7 @@ import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Account, Transaction, categoryType } from 'src/app/datatypes/dataTypes';
 import { AccountService } from 'src/app/services/accountService/account.service';
-import { ChartService } from 'src/app/services/chart.service';
+import { ChartService } from 'src/app/services/chartService/chart.service';
 @Component({
   selector: 'app-accounts',
   templateUrl: './accounts.component.html',

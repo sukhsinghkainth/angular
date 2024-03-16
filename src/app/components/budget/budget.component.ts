@@ -4,9 +4,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { BudgetService } from 'src/app/services/budgetService/budget.service';
 import { MatDialog } from '@angular/material/dialog';
-import { EditBudgetComponent } from '../edit-budget/edit-budget.component';
+import { EditBudgetComponent } from './edit-budget/edit-budget.component';
 import { ToastService } from 'src/app/services/toast/toast.service';
-import { CreateBudgetComponent } from '../create-budget/create-budget.component';
+import { CreateBudgetComponent } from './create-budget/create-budget.component';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Budget } from 'src/app/datatypes/dataTypes';
 

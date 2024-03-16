@@ -2,9 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CategoryService } from 'src/app/services/categoryService/category.service';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { EditCategoryComponent } from '../edit-category/edit-category.component';
+import { EditCategoryComponent } from './edit-category/edit-category.component';
 import { MatTableDataSource } from '@angular/material/table';
-import { CreateCategoryFormComponent } from '../create-category-form/create-category-form.component';
+import { CreateCategoryFormComponent } from './create-category-form/create-category-form.component';
 // import { NgToastService } from 'ng-angular-popup';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { MatPaginator } from '@angular/material/paginator';
@@ -30,10 +30,10 @@ export class CategoryComponent implements OnInit {
     this.getCategories();
   }
   getCategories(): void {
-    
+
     this.categoryService.getCategory().subscribe((categories: HttpResponse<any>) => {
-      this.originalCategories = categories.body 
-    console.log(this.originalCategories)
+      this.originalCategories = categories.body
+      console.log(this.originalCategories)
       this.categories = new MatTableDataSource<Icategory>(this.originalCategories);
       this.categories.paginator = this.paginator;
       this.applyFilter()
@@ -43,11 +43,11 @@ export class CategoryComponent implements OnInit {
   deleteCategory(name: string) {
     this.categoryService.deleteCategory(name).subscribe((resp: HttpResponse<any>) => {
       console.log(resp)
-      this.toast.showToast("success",resp.body.message)
+      this.toast.showToast("success", resp.body.message)
       this.getCategories()
     }, (error: HttpErrorResponse) => {
       console.log(error.error.error)
-      this.toast.showToast("error",error.error.error)
+      this.toast.showToast("error", error.error.error)
     })
   }
 

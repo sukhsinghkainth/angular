@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { TransactionService } from 'src/app/services/transactionService/transaction.service';
-import { CreateTransactionComponent } from '../create-transaction/create-transaction.component';
+import { CreateTransactionComponent } from './create-transaction/create-transaction.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { ITransaction } from 'src/app/datatypes/dataTypes';
 
