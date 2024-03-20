@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthServiceService } from 'src/app/services/authService/auth-service.service';
+import { ToastService } from 'src/app/services/toast/toast.service';
 
 @Component({
   selector: 'app-nav',
@@ -14,7 +15,8 @@ export class NavComponent implements OnInit {
   ngOnInit(): void {
 
   }
-  constructor(private auth: AuthServiceService, private router: Router) {
+  constructor(private auth: AuthServiceService, private router: Router,
+    private toast : ToastService) {
 
   }
 
@@ -25,7 +27,7 @@ export class NavComponent implements OnInit {
   logOut() {
     this.auth.loggedOut();
     console.log('logged out')
-
+    this.toast.showToast("success","logged out")
     this.router.navigate(['login'])
   }
 }
