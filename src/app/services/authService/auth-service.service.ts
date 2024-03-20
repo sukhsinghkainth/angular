@@ -1,5 +1,6 @@
 import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, catchError, map, of, retry, throwError } from 'rxjs';
 
 @Injectable({
@@ -7,7 +8,7 @@ import { Observable, catchError, map, of, retry, throwError } from 'rxjs';
 })
 export class AuthServiceService {
   private ApiUrl = 'http://localhost:3000/api/v1'
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
   private handleError(error: HttpErrorResponse) {
     console.log(error)
     return throwError(error);
@@ -24,6 +25,7 @@ export class AuthServiceService {
     return localStorage.getItem('token') != null ;
   }
   loggedOut() {
-    return localStorage.removeItem('token');
+     localStorage.removeItem('token')
+     this.router.navigate(['login'])
   }
 }
