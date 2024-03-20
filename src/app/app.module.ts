@@ -28,6 +28,9 @@ import { EditBudgetComponent } from './components/budget/edit-budget/edit-budget
 import { AccountsComponent } from './components/accounts/accounts.component'
 import { MatCardModule } from '@angular/material/card';
 import { CreateBudgetComponent } from './components/budget/create-budget/create-budget.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import { MatIconModule } from '@angular/material/icon'; // Import MatIconModule
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,7 +61,9 @@ import { CreateBudgetComponent } from './components/budget/create-budget/create-
     MatFormFieldModule,
     MatProgressBarModule,
     NgToastModule,
-    MatCardModule
+    MatCardModule,
+    MatTabsModule,
+    MatIconModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: CustomInterceptor, multi: true },

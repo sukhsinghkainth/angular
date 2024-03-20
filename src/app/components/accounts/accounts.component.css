@@ -1,8 +1,8 @@
 /* accounts.component.css */
 
 
-#wrapper{
-    color : rgba(246, 237, 237, 0.892);
+#wrapper {
+    color: rgba(246, 237, 237, 0.892);
     font-family: 'Courier New', Courier, monospace;
 }
 
@@ -20,8 +20,8 @@
     width: 300px !important;
     margin: 10px !important;
     -webkit-box-shadow: -18px 9px 31.5px -5.5px #bababa;
--moz-box-shadow: -18px 9px 31.5px -5.5px #bababa;
-box-shadow: -18px 9px 31.5px -5.5px #bababa;
+    -moz-box-shadow: -18px 9px 31.5px -5.5px #bababa;
+    box-shadow: -18px 9px 31.5px -5.5px #bababa;
 }
 
 .negative-balance {
@@ -39,25 +39,18 @@ box-shadow: -18px 9px 31.5px -5.5px #bababa;
     -webkit-backdrop-filter: blur(19px);
     border: 1px solid rgb(255 255 255 / 60%);
     margin: 10px !important;
-}  
-#chart{
-   margin-top: 70px;
+}
+
+#chart {
+    margin-top: 70px;
     align-items: center;
     justify-content: space-evenly;
     gap: 150px;
     display: flex;
     overflow: hidden;
 }
-#accountChart{ 
-    width: 550px !important;
-    height: 550px !important;
-    background: rgb(255 255 255 / 35%);
-    -webkit-backdrop-filter: blur(37px);
-    backdrop-filter: blur(37px);
-    border: 1px solid rgb(255 255 255 / 78%);
-    border-radius: 10px;
-}
-#incomeExpenseChart{ 
+
+#accountChart {
     width: 550px !important;
     height: 550px !important;
     background: rgb(255 255 255 / 35%);
@@ -67,4 +60,46 @@ box-shadow: -18px 9px 31.5px -5.5px #bababa;
     border-radius: 10px;
 }
 
+#incomeExpenseChart {
+    width: 550px !important;
+    height: 550px !important;
+    background: rgb(255 255 255 / 35%);
+    -webkit-backdrop-filter: blur(37px);
+    backdrop-filter: blur(37px);
+    border: 1px solid rgb(255 255 255 / 78%);
+    border-radius: 10px;
+}
 
+#dailyExpenseChart {
+    width: 80% !important;
+    height: 80% !important;
+    background: rgb(255 255 255 / 35%);
+    -webkit-backdrop-filter: blur(37px);
+    backdrop-filter: blur(37px);
+    border: 1px solid rgb(255 255 255 / 78%);
+    border-radius: 10px;
+}
+#dailyIncomeChart{
+    width: 80% !important;
+    height: 80% !important;
+    background: rgb(255 255 255 / 35%);
+    -webkit-backdrop-filter: blur(37px);
+    backdrop-filter: blur(37px);
+    border: 1px solid rgb(255 255 255 / 78%);
+    border-radius: 10px;
+}
+
+button{
+    background: transparent;
+    border: 1px solid white;
+    border-radius: 20px;
+    width: 55px;
+    color: white;
+}
+
+button:hover{
+    background: transparent;
+    border: 2px solid black;
+    border-radius: 20px;
+    color: black;
+}
