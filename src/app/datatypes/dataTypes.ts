@@ -7,45 +7,53 @@ export enum AccountType {
     SAVINGS = 'savings',
     CARD = 'card',
     CASH = 'cash'
-} 
-
-export interface Icategory{
-     name : string,
-     type : categoryType
 }
- 
+
+export interface Icategory {
+    name: string,
+    type: categoryType,
+    message?: string
+}
+
+export interface msg {
+    message: string
+}
+
 export interface Budget {
-    category : Icategory
+    category: Icategory
     limit: number;
     spent: number;
     remaininglimit: number;
+    budget?: [];
+    message?: string
 }
 
 export interface Transaction {
     amount: number;
     type: categoryType;
     notes: string;
-    category:  Icategory
+    category: Icategory
     date: Date;
     account: string;
+    message: string
 }
 
 export interface Account {
     accountType: AccountType;
     transactions: Transaction[];
-    balance? : number
+    balance?: number
 }
 
 export interface ITransaction {
-    _id : string,
-    type : categoryType,
-    account : {
-        _id : string,
-        accountType : AccountType
+    _id: string,
+    type: categoryType,
+    account: {
+        _id: string,
+        accountType: AccountType
     },
-   category : Icategory,
-   notes : string,
-   date : Date,
-   amount : number
+    category: Icategory,
+    notes: string,
+    date: Date,
+    amount: number
 }
 
