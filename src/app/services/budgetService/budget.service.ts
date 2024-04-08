@@ -1,43 +1,22 @@
-import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, retry, throwError } from 'rxjs';
-import { Budget } from 'src/app/datatypes/dataTypes';
+import { Budget, Icategory } from 'src/app/datatypes/dataTypes';
+import { HttpService } from '../httpService/http.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BudgetService {
-  createBudget(budgetData: any): Observable<HttpResponse<any>> {
-    console.log(budgetData);
-    return this.http.post<{ message: string }>(this.ApiUrl + '/setBudget', budgetData, { observe: 'response' }).pipe(retry(2),
-      catchError(this.handleError))
+  constructor(private http: HttpService) { }
+  createBudget(budgetData: Icategory) {
+    return this.http.post<Icategory>("setBudget", budgetData)
   }
-  private ApiUrl = 'http://localhost:3000/api/v1'
-  private handleError(error: HttpErrorResponse) {
-    console.log(error)
-    return throwError(error);
+  allBudgets() {
+    return this.http.get<Budget>("view-budgets")
   }
-  constructor(private http: HttpClient) { }
-  allBudgets(): Observable<HttpResponse<any>> {
-    return this.http.get(this.ApiUrl + '/view-budgets', { observe: 'response' }).pipe(
-      catchError(this.handleError)
-    );
-  }
-  deleteBudget(data : Budget):Observable<HttpResponse<any>>{
-    console.log(data);
-    return this.http.delete(this.ApiUrl+`/deleteBudget/${data}`, {observe : 'response'}).pipe(
-      catchError(this.handleError)
-    )
+  deleteBudget(data: Budget) {
+    return this.http.delete<Budget>(`deleteBudget/${data}`)
   }
   updateBudget(data: any) {
-    const { categoryName , limit } = data
-    categoryName as string
-    return this.http.put<{ message: string }>(this.ApiUrl + '/updateBudget', {
-      categoryName, limit
-    }, { observe: 'response' }).pipe(
-      retry(2),
-
-      catchError(this.handleError)
-    )
+    return this.http.update<Budget>("updateBudget", data)
   }
 }

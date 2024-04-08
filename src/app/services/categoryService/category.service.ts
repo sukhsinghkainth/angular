@@ -1,40 +1,26 @@
-import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, retry, throwError } from 'rxjs';
-
+import { HttpService } from '../httpService/http.service';
+import { Icategory } from 'src/app/datatypes/dataTypes';
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
-
-  private ApiUrl = 'http://localhost:3000/api/v1'
-  private handleError(error: HttpErrorResponse) {
-    console.log(error)
-    return throwError(error);
+  constructor(
+    private http: HttpService) { }
+  createCategory(categoryData: Icategory) {
+    return this.http.post<Icategory>("createCategory", categoryData);
   }
-  constructor(private http: HttpClient) { }
-  createCategory(categoryData: string): Observable<HttpResponse<any>> {
-    return this.http.post<{ message: string }>(this.ApiUrl + '/createCategory', categoryData, { observe: 'response' }).pipe(retry(2),
-      catchError(this.handleError))
+  deleteCategory(name: string) {
+    return this.http.delete<Icategory>(`deleteCategory/${name}`)
   }
-  deleteCategory(name : string):Observable<HttpResponse<any>>{
-     return this.http.delete(this.ApiUrl+`/deleteCategory/${name}`,{observe:'response'}).pipe(
-      catchError(this.handleError)
-     )
-  }
-  getCategory(categoryType?: string): Observable<HttpResponse<any>> {
-    let query = `${"/allcategories"}`
+  getCategory(categoryType?: string) {
+    let query = `${"allcategories"}`
     if (categoryType) {
-      query = `/allcategories/${categoryType}`
+      query = `allcategories/${categoryType}`
     }
-    return this.http.get(this.ApiUrl + query, { observe: 'response' }).pipe(
-      catchError(this.handleError)
-    );
+    return this.http.get<Icategory[]>(query);
   }
-  editCategory(name: string, categoryData: string): Observable<HttpResponse<any>> {
-    return this.http.put<{ message: string }>(`${this.ApiUrl}/editCategory/${name}`, categoryData, { observe: 'response' }).pipe(
-      retry(2),
-      catchError(this.handleError)
-    );
+  editCategory(name: string, categoryData: string) {
+    return this.http.update(`editCategory/${name}`, categoryData)
   }
 }

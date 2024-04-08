@@ -1,31 +1,24 @@
-import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, catchError, map, of, retry, throwError } from 'rxjs';
+import { HttpService } from '../httpService/http.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServiceService {
-  private ApiUrl = 'http://localhost:3000/api/v1'
-  constructor(private http: HttpClient, private router: Router) { }
-  private handleError(error: HttpErrorResponse) {
-    console.log(error)
-    return throwError(error);
+  constructor(private router: Router, private http: HttpService) { }
+  signup(userData: string) {
+    return this.http.post("signup", userData)
   }
-  signup(userData: string): Observable<HttpResponse<any>> {
-    return this.http.post<{ message: string }>(this.ApiUrl + '/signup', userData, { observe: 'response' }).pipe(retry(2),
-      catchError(this.handleError))
-  }
-  login(email: string, password: string): Observable<HttpResponse<any>> {
-    return this.http.post<{ message: string }>(this.ApiUrl + '/login', { email, password }, { observe: 'response' }).pipe(retry(2),
-      catchError(this.handleError))
+  login(email: string, password: string) {
+    return this.http.post("login", { email, password })
   }
   isAuthenticated() {
-    return localStorage.getItem('token') != null ;
+    return localStorage.getItem('token') != null;
   }
   loggedOut() {
-     localStorage.removeItem('token')
-     this.router.navigate(['login'])
+    localStorage.removeItem('token')
+    this.router.navigate(['login'])
   }
 }
