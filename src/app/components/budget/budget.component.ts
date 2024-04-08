@@ -8,7 +8,7 @@ import { EditBudgetComponent } from './edit-budget/edit-budget.component';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { CreateBudgetComponent } from './create-budget/create-budget.component';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { Budget } from 'src/app/datatypes/dataTypes';
+import { Budget, msg } from 'src/app/datatypes/dataTypes';
 
 
 @Component({
@@ -28,15 +28,15 @@ export class BudgetComponent implements OnInit {
   }
 
   getBudgets(): void {
-    this.budget.allBudgets().subscribe((response: HttpResponse<any>) => {
+    this.budget.allBudgets().subscribe((response: HttpResponse<Budget>) => {
       console.log(response)
-      this.budgets = new MatTableDataSource<Budget>(response.body.budget);
+      this.budgets = new MatTableDataSource<Budget>(response.body?.budget ?? []);
       this.budgets.paginator = this.paginator;
     });
   }
   deleteBudget(data: Budget) {
-    this.budget.deleteBudget(data).subscribe((resp: HttpResponse<any>) => {
-      this.toast.showToast('success', resp.body.message)
+    this.budget.deleteBudget(data).subscribe((resp: HttpResponse<Budget>) => {
+      this.toast.showToast('success', resp.body?.message ?? "")
       this.getBudgets();
     }, (error: HttpErrorResponse) => {
       this.toast.showToast('error', error.error.error)

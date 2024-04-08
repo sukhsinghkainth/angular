@@ -15,42 +15,42 @@ import { Icategory } from 'src/app/datatypes/dataTypes';
 export class CreateBudgetComponent implements OnInit {
   budgetForm: FormGroup;
   categories: Icategory[] = [];
- 
   constructor(
-     private fb: FormBuilder,
-     private categoryService: CategoryService,
-     private budgetService: BudgetService,
-     private toast: ToastService,
-     public dialogRef: MatDialogRef<CreateBudgetComponent>
+    private fb: FormBuilder,
+    private categoryService: CategoryService,
+    private budgetService: BudgetService,
+    private toast: ToastService,
+    public dialogRef: MatDialogRef<CreateBudgetComponent>
   ) {
-     this.budgetForm = this.fb.group({
-       categoryName: ['', Validators.required],
-       limit: ['', [Validators.required, Validators.min(0)]]
-     });
+    this.budgetForm = this.fb.group({
+      categoryName: ['', Validators.required],
+      limit: ['', [Validators.required, Validators.min(0)]]
+    });
   }
- 
+
   ngOnInit(): void {
-     this.loadCategories();
+    this.loadCategories();
   }
- 
+
   loadCategories(): void {
-     this.categoryService.getCategory("expense").subscribe(response => {
-       this.categories = response.body; // Adjust based on the actual response structure
-     });
+    this.categoryService.getCategory("expense").subscribe((response) => {
+      this.categories = response.body ? response.body : []
+    });
   }
- 
+
   onSubmit(): void {
-     if (this.budgetForm.valid) {
-       const budgetData = this.budgetForm.value  as Icategory;
-       this.budgetService.createBudget(budgetData).subscribe(
-         (res: HttpResponse<any>) => {
-           this.toast.showToast('success', `${res.body.message}`);
-           this.dialogRef.close(true);
-         },
-         (error: HttpErrorResponse) => {
-           this.toast.showToast('error', `${error.error.error}`);
-         }
-       );
-     }
+    if (this.budgetForm.valid) {
+
+      this.budgetService.createBudget(this.budgetForm.value).subscribe(
+        (res) => {
+          console.log(res)
+          this.toast.showToast('success', `${res.body?.message}`);
+          this.dialogRef.close(true);
+        },
+        (error: HttpErrorResponse) => {
+          this.toast.showToast('error', `${error.error.error}`);
+        }
+      );
+    }
   }
- }
+}

@@ -15,7 +15,7 @@ import { Icategory } from 'src/app/datatypes/dataTypes';
   styleUrls: ['./category.component.css']
 })
 export class CategoryComponent implements OnInit {
-  categories!: MatTableDataSource<any>;
+  categories!: MatTableDataSource<Icategory>;
   displayedColumns: string[] = ['name', 'type', 'actions', 'delete'];
   typeFilter = '';
   originalCategories: Icategory[] = [];
@@ -31,8 +31,8 @@ export class CategoryComponent implements OnInit {
   }
   getCategories(): void {
 
-    this.categoryService.getCategory().subscribe((categories: HttpResponse<any>) => {
-      this.originalCategories = categories.body
+    this.categoryService.getCategory().subscribe((categories) => {
+      this.originalCategories = categories.body ? categories.body : [];
       console.log(this.originalCategories)
       this.categories = new MatTableDataSource<Icategory>(this.originalCategories);
       this.categories.paginator = this.paginator;
@@ -41,9 +41,9 @@ export class CategoryComponent implements OnInit {
   }
 
   deleteCategory(name: string) {
-    this.categoryService.deleteCategory(name).subscribe((resp: HttpResponse<any>) => {
+    this.categoryService.deleteCategory(name).subscribe((resp) => {
       console.log(resp)
-      this.toast.showToast("success", resp.body.message)
+      this.toast.showToast("success", resp.body?.message)
       this.getCategories()
     }, (error: HttpErrorResponse) => {
       console.log(error.error.error)

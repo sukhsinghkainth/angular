@@ -31,15 +31,11 @@ export class TransactionsComponent implements OnInit {
       width: "600px"
     });
     dialogRef.afterClosed().subscribe(() => {
-      console.log("closed")
       this.getTransactions()
     });
   }
   getTransactions() {
     this.transactionService.allTransactions().subscribe((transactions: HttpResponse<any>) => {
-      console.log('here is line 39');
-
-      console.log(transactions)
       this.originalTransactions = transactions.body
       this.transactions = new MatTableDataSource<ITransaction>(this.originalTransactions)
       this.transactions.paginator = this.paginator;

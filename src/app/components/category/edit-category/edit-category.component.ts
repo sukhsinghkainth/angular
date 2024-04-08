@@ -34,7 +34,7 @@ export class EditCategoryComponent implements OnInit {
   ngOnInit(): void { }
 
   onSubmit(): void {
-    this.categoryService.editCategory(this.data.name, this.categoryForm.value).subscribe((res: HttpResponse<any>) => {
+    this.categoryService.editCategory(this.data.name, this.categoryForm.value).subscribe(() => {
       this.dialogRef.close(true);
     },
       (error: HttpErrorResponse) => {

@@ -5,7 +5,7 @@ import { CategoryService } from 'src/app/services/categoryService/category.servi
 import { TransactionService } from 'src/app/services/transactionService/transaction.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ToastService } from 'src/app/services/toast/toast.service';
-import { Icategory } from 'src/app/datatypes/dataTypes';
+import { Icategory, Transaction } from 'src/app/datatypes/dataTypes';
 
 @Component({
   selector: 'app-create-transaction',
@@ -33,18 +33,20 @@ export class CreateTransactionComponent implements OnInit {
     this.loadCategories();
   }
   loadCategories() {
-    this.categoryService.getCategory().subscribe(response => {
-      this.categories = response.body; // Adjust based on the actual response structure
+    this.categoryService.getCategory().subscribe((response) => {
+      this.categories = Array.isArray(response.body) ? response.body : []
     });
   }
   onSubmit() {
     console.log(this.form.value);
-    this.transactionService.createTransaction(this.form.value).subscribe((res: HttpResponse<any>) => {
-      this.toast.showToast('success', `${res.body.message}`)
+    const data = this.form.value as Transaction
+    this.transactionService.createTransaction(data).subscribe((res) => {
+      const success = res.body?.message
+      this.toast.showToast('success', `${success}`)
       setTimeout(() => {
         this.dilogRef.close(true);
       }, 900);
-      
+
     }, (errors: HttpErrorResponse) => {
       console.log(errors)
       this.toast.showToast("error", `${errors.error.error}`)
