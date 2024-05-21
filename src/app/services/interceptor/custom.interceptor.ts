@@ -22,12 +22,15 @@ export class CustomInterceptor implements HttpInterceptor {
         this.auth.loggedOut();
         throw new Error("Not authenticated out")
       }
+      const cloneRequest = request.clone({
+        setHeaders: {
+          Authorization: `Bearer ${this.data}`
+        }
+      })
+      return next.handle(cloneRequest);
     }
-    const cloneRequest = request.clone({
-      setHeaders: {
-        Authorization: `Bearer ${this.data}`
-      }
-    })
-    return next.handle(cloneRequest);
+    else {
+      return next.handle(request);
+    }
   }
 }

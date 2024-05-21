@@ -13,7 +13,7 @@ import { ToastService } from 'src/app/services/toast/toast.service';
 export class LoginComponent {
   loading = false;
   error = '';
-  success!: string; 
+  success!: string;
   userform: FormGroup;
 
   constructor(
@@ -41,10 +41,7 @@ export class LoginComponent {
           localStorage.setItem('token', token);
           this.success = res.body.Response.username + " log in successfully"
           this.toasts.showToast("success", this.success)
-          setTimeout(() => {
-            this.router.navigate(['']).then(() => {
-              window.location.reload();})  
-          }, 600);
+          this.router.navigate([''])
         } else {
           this.error = 'Invalid response from server';
         }

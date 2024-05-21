@@ -12,7 +12,7 @@ import { AccountsComponent } from './components/accounts/accounts.component';
 const routes: Routes = [
   {
     path: '',
-    component: HomapageComponent,
+    component: AccountsComponent,
     canActivate: [authGuard]
   },
   {
